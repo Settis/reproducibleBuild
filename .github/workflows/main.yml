@@ -15,7 +15,7 @@ jobs:
       - run: npm ci
         working-directory: todo
       - name: build UI
-        run: npm run build
+        run: npm run buildNoMap
         working-directory: todo
       - uses: actions/setup-python@v4
         with:

@@ -1,13 +1,18 @@
 import configparser
+from numpy.random import seed
 import tensorflow as tf
+from tensorflow.python.framework import ops
 
 
 config = configparser.ConfigParser()
 config.read('config.ini')
+seed(int(config['Numpy']['seed']))
 tf.random.set_seed(int(config['Model']['seed']))
 mnist = tf.keras.datasets.mnist
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+ops.reset_default_graph()
 
 model = tf.keras.models.Sequential([
   tf.keras.layers.Flatten(input_shape=(28, 28)),
