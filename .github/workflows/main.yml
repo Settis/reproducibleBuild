@@ -1,0 +1,38 @@
+name: create a jar
+
+on:
+  workflow_dispatch:
+
+jobs:
+  linux-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      - run: npm ci
+        working-directory: todo
+      - name: build UI
+        run: npm run build
+        working-directory: todo
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+        working-directory: mnist
+      - run: python calcModel.py
+        working-directory: mnist
+      - uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+      - run: ./gradlew jar --no-daemon
+        working-directory: javaApp
+      - uses: actions/upload-artifact@v3
+        with:
+          name: linux-artifact
+          path: javaApp/app/build/libs/app.jar
