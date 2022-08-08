@@ -1,0 +1,13 @@
+VERSION 0.6
+FROM python:3.10.6
+WORKDIR /mnist
+
+deps:
+    COPY requirements.txt ./
+    RUN pip install --no-cache-dir -r requirements.txt
+
+build:
+    FROM +deps
+    COPY calcModel.py config.ini ./
+    RUN python calcModel.py
+    SAVE ARTIFACT ./saved_model AS LOCAL ./saved_model

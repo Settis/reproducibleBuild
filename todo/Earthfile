@@ -1,0 +1,13 @@
+VERSION 0.6
+FROM node:16.16.0-alpine
+WORKDIR /todo
+
+deps:
+    COPY package.json package-lock.json ./
+    RUN npm ci
+
+build:
+    FROM +deps
+    COPY --dir src public ./
+    RUN npm run build
+    SAVE ARTIFACT ./build AS LOCAL ./build
