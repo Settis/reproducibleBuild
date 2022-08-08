@@ -24,7 +24,7 @@ jobs:
     - name: Earthly version
       run: earthly --version
     - name: Run build
-      run: earthly --ci +build
+      run: earthly --ci -a +build/app.jar
     - uses: actions/upload-artifact@v3
       with:
         path: app.jar
