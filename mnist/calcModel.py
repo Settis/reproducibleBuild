@@ -8,6 +8,8 @@ config = configparser.ConfigParser()
 config.read('config.ini')
 seed(int(config['Numpy']['seed']))
 tf.random.set_seed(int(config['Model']['seed']))
+tf.keras.utils.set_random_seed(int(config['Keras']['seed']))
+tf.config.experimental.enable_op_determinism()
 mnist = tf.keras.datasets.mnist
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
