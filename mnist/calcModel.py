@@ -2,6 +2,7 @@ import configparser
 from numpy.random import seed
 import tensorflow as tf
 from tensorflow.python.framework import ops
+import random
 
 
 config = configparser.ConfigParser()
@@ -29,10 +30,9 @@ model.compile(optimizer='adam',
               loss=loss_fn,
               metrics=['accuracy'])
 
+random.seed(11)
+model.fit(x_train, y_train, epochs=5, verbose=2, shuffle=False)
+
+model.evaluate(x_test,  y_test, verbose=2)
+
 model.save('saved_model')
-
-# model.fit(x_train, y_train, epochs=1, verbose=2, shuffle=False)
-
-# model.evaluate(x_test,  y_test, verbose=2)
-
-# model.save('saved_model')
