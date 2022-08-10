@@ -17,6 +17,8 @@ mnist = tf.keras.datasets.mnist
 
 ops.reset_default_graph()
 
+print(tf.config.optimizer.get_experimental_options())
+
 model = tf.keras.models.Sequential([
   tf.keras.layers.Flatten(input_shape=(28, 28)),
   tf.keras.layers.Dense(128, activation='relu', kernel_initializer=tf.random_uniform_initializer(seed=int(config['Model']['seed']))),
