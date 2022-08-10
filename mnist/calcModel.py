@@ -17,6 +17,7 @@ mnist = tf.keras.datasets.mnist
 
 ops.reset_default_graph()
 
+tf.config.optimizer.set_experimental_options({'disable_meta_optimizer': True, 'disable_model_pruning': True})
 print(tf.config.optimizer.get_experimental_options())
 
 model = tf.keras.models.Sequential([
