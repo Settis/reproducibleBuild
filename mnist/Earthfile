@@ -9,5 +9,5 @@ deps:
 build:
     FROM +deps
     COPY calcModel.py config.ini ./
-    RUN python calcModel.py
+    RUN TF_ENABLE_ONEDNN_OPTS=0 python calcModel.py
     SAVE ARTIFACT ./saved_model AS LOCAL ./saved_model
