@@ -46,7 +46,7 @@ jobs:
     - uses: actions/checkout@v3
     - uses: Vampire/setup-wsl@v1
     - name: Download latest earthly
-      run: "curl -v -o earthly.exe https://github.com/earthly/earthly/releases/download/v0.6.21/earthly-windows-amd64.exe"
+      run: "curl -v -L -o earthly.exe https://github.com/earthly/earthly/releases/download/v0.6.21/earthly-windows-amd64.exe"
     - name: Show folder after download
       run: dir
     - name: Earthly version
