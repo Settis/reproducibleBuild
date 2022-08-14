@@ -26,8 +26,8 @@ jobs:
       FORCE_COLOR: 1
     steps:
     - uses: actions/checkout@v3
-    - name: Install podman
-      run: "brew install podman"
+    - name: Install docker
+      run: "brew install docker"
     - name: Download latest earthly
       run: "brew install earthly/earthly/earthly && earthly bootstrap"
     - name: Earthly version
@@ -45,8 +45,12 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: Vampire/setup-wsl@v1
+    - name: Show folder before download
+      run: dir
     - name: Download latest earthly
       run: "curl -o earthly.exe https://github.com/earthly/earthly/releases/download/v0.6.21/earthly-windows-amd64.exe"
+    - name: Show folder after download
+      run: dir
     - name: Earthly version
       run: earthly.exe --version
     - name: Run build
