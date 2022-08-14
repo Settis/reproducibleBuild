@@ -50,9 +50,9 @@ jobs:
     - name: Show folder after download
       run: dir
     - name: Earthly version
-      run: earthly.exe --version
+      run: .\earthly.exe --version
     - name: Run build
-      run: earthly.exe --ci -a +build/app.jar
+      run: .\earthly.exe --ci -a +build/app.jar
     - uses: actions/upload-artifact@v3
       with:
         name: windows
